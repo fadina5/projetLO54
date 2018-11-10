@@ -17,7 +17,7 @@ public class CourseRepository {
 	
 	    session.beginTransaction();
 	    //Rechercher un enregistrement
-	   Course course = new Course(12,"LO54","Programmation");
+	   Course course = new Course("LO54","Programmation");
 	   
 	    session.save(course);
 	    session.getTransaction().commit();       

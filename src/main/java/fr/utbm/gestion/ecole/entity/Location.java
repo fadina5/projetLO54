@@ -1,5 +1,6 @@
 package fr.utbm.gestion.ecole.entity;
 
+
 public class Location {
 	
 	private Integer idLocation;
