@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: gestion-ecole
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: fadina
+Implementation-Vendor-Id: fr.utbm
+Build-Jdk: 1.8.0_151
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/gestion-ecole
+Created-By: Maven Integration for Eclipse
+

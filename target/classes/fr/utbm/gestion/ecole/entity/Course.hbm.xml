@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="fr.utbm.gestion.ecole.entity.Course" table="Course">
+    <id name="idCourse" type="int" column="COURS_ID">
+      <generator class="assigned"/>
+    </id>
+    <property name="code" type="string">
+      <column length="20" name="COURS_CODE" not-null="true"/>
+    </property>
+    <property name="titre" type="string">
+      <column length="20" name="COURS_TITLE" not-null="true"/>
+    </property>
+   
+  </class>
+</hibernate-mapping>
+
