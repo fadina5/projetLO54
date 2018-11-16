@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="fr.utbm.gestion.ecole.entity.Course" table="Course">
+  <class name="fr.utbm.gestion.ecole.entity.Course" table="COURSE">
     <id name="code" length="20" type="string" column="COURS_CODE">
       <generator class="assigned"/>
     </id>

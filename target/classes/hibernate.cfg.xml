@@ -14,5 +14,6 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course.hbm.xml" />
+        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course_Session.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

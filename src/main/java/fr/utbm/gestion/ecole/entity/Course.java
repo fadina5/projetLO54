@@ -7,9 +7,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Course")
-public class Course {
+@Table(name="COURSE")
+public class Course implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="COURS_CODE")
 	private String code;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.utbm.gestion.ecole.entity.CourseSession" table="COURSE_SESSION">
+		<id name="id" column="CS_ID">
+			<generator class="identity" />
+		</id>
+		<property name="startDate" column="CS_START_DATE" not-null="true" />
+		<property name="endDate" column="CS_END_DATE" not-null="true" />
+		<property name="max" column="CS_MAX" not-null="true" />
+		<many-to-one name="course" column="COURS_CODE" unique="true" lazy="false" />
+		<many-to-one name="location" column="LOC_ID" unique="true" lazy="false" />
+
+	</class>
+</hibernate-mapping>

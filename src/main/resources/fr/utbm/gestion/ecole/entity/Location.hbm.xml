@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-  <class name="fr.utbm.gestion.ecole.entity.Course" table="COURSE">
-    <id name="code" length="20" type="string" column="COURS_CODE">
+  <class name="fr.utbm.gestion.ecole.entity.Location" table="COURSE">
+    <id name="idLocation" length="20" type="int" column="LOC_ID">
       <generator class="assigned"/>
     </id>
-    <property name="titre" type="string">
-      <column length="20" name="COURS_TITLE" not-null="true"/>
+    <property name="city" type="string">
+      <column length="20" name="LOC_CITY" not-null="true"/>
     </property>
    
   </class>
 </hibernate-mapping>
-

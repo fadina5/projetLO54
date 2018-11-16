@@ -1,11 +1,33 @@
 package fr.utbm.gestion.ecole.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-public class Location {
-	
+@Entity
+@Table(name = "LOCATION")
+public class Location implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "LOC_ID")
+	@NotNull
 	private Integer idLocation;
+
+	@Id
+	@Column(name = "LOC_CITY")
+	@NotNull
 	private String city;
-	
+
 	public Location() {
 		super();
 	}
@@ -31,7 +53,5 @@ public class Location {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
 
 }
