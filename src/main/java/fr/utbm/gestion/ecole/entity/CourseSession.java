@@ -84,6 +84,13 @@ public class CourseSession implements java.io.Serializable {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
 	
 	
 	
