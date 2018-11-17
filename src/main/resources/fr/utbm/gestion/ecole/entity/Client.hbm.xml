@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="fr.utbm.gestion.ecole.entity.Client" table="CLIENT">
+		<id name="id" type="int">
+			<column name="CLI_ID"/>
+			<generator class="assigned" />
+		</id>
+		<property name="lastname" type="string">
+			<column name="CLI_LASTNAME" length="20" not-null="true" />
+		</property>
+		<property name="firstname" type="string">
+			<column name="CLI_FIRSTNAME" length="35" not-null="true" />
+		</property>
+		<property name="address" type="string">
+			<column name="CLI_ADDRESS" length="35" not-null="true" />
+		</property>
+		<property name="phone" type="string">
+			<column name="CLI_PHONE" length="13" not-null="true" />
+		</property>
+		<property name="email" type="string">
+			<column name="CLI_EMAIL" length="35" />
+		</property>
+ 		<set name="courseSession" table="SELECTIONNER" >
+            <key column="CLI_ID" />
+            <many-to-many column="CS_ID" class="fr.utbm.gestion.ecole.entity.CourseSession" />
+        </set>
+	</class>
+</hibernate-mapping>

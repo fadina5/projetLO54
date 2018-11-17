@@ -16,5 +16,6 @@
         <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course.hbm.xml" />
         <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course_Session.hbm.xml" />
         <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Location.hbm.xml" />
+        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Client.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

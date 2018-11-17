@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.utbm.gestion.ecole.repository.ClientRepository;
 import fr.utbm.gestion.ecole.repository.CourseRepository;
 import fr.utbm.gestion.ecole.repository.CourseSessionRepository;
 import fr.utbm.gestion.ecole.repository.LocationRepository;
@@ -21,6 +22,9 @@ public class TestServiceImpl implements TestService {
 	
 	@Autowired
 	private LocationRepository locationRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 		
 	@Transactional
 	public void  getCourse() {
@@ -28,6 +32,7 @@ public class TestServiceImpl implements TestService {
 		 courseRepository.addCourse();
 		 courseSessionRepository.addCourseSession();
 		 locationRepository.addLocation();
+		 clientRepository.addClient();
 	}
 
 }
