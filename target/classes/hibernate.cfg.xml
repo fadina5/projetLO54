@@ -13,9 +13,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course.hbm.xml" />
-        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Course_Session.hbm.xml" />
-        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Location.hbm.xml" />
-        <mapping resource="classpath:fr/utbm/gestion/ecole/entity/Client.hbm.xml" />
+        <mapping class="fr.utbm.gestion.ecole.entity.Course" />
+        <mapping class="fr.utbm.gestion.ecole.entity.CourseSession" />
+        <mapping class="fr.utbm.gestion.ecole.entity.Location" />
+        <mapping class="fr.utbm.gestion.ecole.entity.Client" />
     </session-factory>
 </hibernate-configuration>

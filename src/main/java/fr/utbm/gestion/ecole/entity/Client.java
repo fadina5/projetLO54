@@ -1,14 +1,14 @@
 package fr.utbm.gestion.ecole.entity;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,7 +20,7 @@ public class Client implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CLI_ID")
 	private Integer id;
 	
@@ -40,25 +40,30 @@ public class Client implements java.io.Serializable {
 	@NotNull
     private String phone;
 	
+	@Email
 	@Column(name ="CLI_EMAIL")
 	@NotNull
     private String email;
 	
-	@ManyToMany(mappedBy ="courseSession") 
-	private Set<CourseSession> courseSession;
+	@ManyToOne
+    @JoinColumn(name ="CS_ID")
+	private CourseSession courseSession;
 	
     public Client() {
 		super();
 	}
-	public Client(Integer id, String lastname, String firstname, String address, String phone, String email) {
+	
+	public Client( String lastname,String firstname,String address,String phone,
+			 String email,CourseSession courseSession) {
 		super();
-		this.id = id;
 		this.lastname = lastname;
 		this.firstname = firstname;
 		this.address = address;
 		this.phone = phone;
 		this.email = email;
+		this.courseSession = courseSession;
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -95,12 +100,15 @@ public class Client implements java.io.Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Set<CourseSession> getCourseSession() {
+
+	public CourseSession getCourseSession() {
 		return courseSession;
 	}
-	public void setCourseSession(Set<CourseSession> courseSession) {
+
+	public void setCourseSession(CourseSession courseSession) {
 		this.courseSession = courseSession;
 	}
+	
 	
     
 

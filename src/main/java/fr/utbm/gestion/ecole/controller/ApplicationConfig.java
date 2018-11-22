@@ -1,4 +1,4 @@
-package fr.utbm.fr.gestion.ecole.controller;
+package fr.utbm.gestion.ecole.controller;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

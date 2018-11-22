@@ -1,8 +1,14 @@
 package fr.utbm.gestion.ecole.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +26,10 @@ public class Course implements java.io.Serializable {
 	@NotNull
 	@Column(name="COURS_TITLE")
 	private String titre;
+	
+	@OneToMany(mappedBy ="course",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<CourseSession> courseSessions = new ArrayList<>();
+
 	public Course() {
 		super();
 	}
@@ -44,6 +54,15 @@ public class Course implements java.io.Serializable {
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
+
+	public List<CourseSession> getCourseSessions() {
+		return courseSessions;
+	}
+
+	public void setCourseSessions(List<CourseSession> courseSessions) {
+		this.courseSessions = courseSessions;
+	}
+	
 	
 	
 

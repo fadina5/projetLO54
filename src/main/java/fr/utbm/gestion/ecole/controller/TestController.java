@@ -1,4 +1,4 @@
-package fr.utbm.fr.gestion.ecole.controller;
+package fr.utbm.gestion.ecole.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

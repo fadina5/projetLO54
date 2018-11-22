@@ -15,7 +15,7 @@ public class LocationRepository {
 	
 	    session.beginTransaction();
 	    //Rechercher un enregistrement
-	   Location location =new Location(1,"Belfort");
+	   Location location =new Location("Belfort");
 	   
 	    session.save(location);
 	    session.getTransaction().commit();       
