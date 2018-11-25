@@ -43,15 +43,6 @@ public class CourseSession implements java.io.Serializable {
 	@JoinColumn(name = "COURS_CODE")
 	private Course courseCode;
 
-	/*
-	 * @JoinColumns({
-	 * 
-	 * @JoinColumn(name = "LOC_ID", insertable = false, updatable = false,
-	 * foreignKey = @ForeignKey(name = "FK_COURSE_SESSION_LOCATION")),
-	 * 
-	 * @JoinColumn(name = "LOC_CITY", insertable = false, updatable = false,
-	 * foreignKey = @ForeignKey(name = "FK_COURSE_SESSION_LOCATION")) })
-	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOC_ID")
 	private Location locationId;

@@ -3,7 +3,6 @@ package fr.utbm.gestion.ecole.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -109,7 +108,7 @@ public class CourseSessionRepository {
 		List<CourseSession> courseSessions = new ArrayList<>();
 
 		try {
-			Query<CourseSession> query = session.createQuery("FROM COURSE_SESSION");
+			Query<CourseSession> query = session.createQuery("from CourseSession");
 			courseSessions = query.list();
 
 		} catch (HibernateException hibernateException) {

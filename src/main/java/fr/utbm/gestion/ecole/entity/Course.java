@@ -46,11 +46,12 @@ public class Course implements java.io.Serializable {
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Course [code=" + code + ", titre=" + titre + "]";
 	}
+
 	
 
 }

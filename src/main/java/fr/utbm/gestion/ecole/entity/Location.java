@@ -21,7 +21,7 @@ public class Location implements java.io.Serializable {
 	@Column(name = "LOC_ID")
 	private Integer id;
 
-	@Id
+	
 	@Column(name = "LOC_CITY")
 	private String city;
 

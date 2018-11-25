@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -38,29 +39,29 @@ public class Client implements java.io.Serializable {
 	@Column(name = "CLI_PHONE")
 	@NotNull
 	private String phone;
-
+	
+	@Email
 	@Column(name = "CLI_EMAIL")
 	@NotNull
 	private String email;
 
 	@ManyToOne
-	@JoinColumn(name ="CS_ID")
-	private CourseSession courseSessionId;
+	@JoinColumn(name = "CS_ID")
+	private CourseSession courseSession;
 
 	public Client() {
 		super();
 	}
 
-	public Client(Integer id, String lastname, String firstname, String address, String phone, String email,
-			CourseSession courseSessionId) {
+	public Client(String lastname, String firstname, String address, String phone, String email,
+			CourseSession courseSession) {
 		super();
-		this.id = id;
 		this.lastname = lastname;
 		this.firstname = firstname;
 		this.address = address;
 		this.phone = phone;
 		this.email = email;
-		this.courseSessionId = courseSessionId;
+		this.courseSession = courseSession;
 	}
 
 	public Integer getId() {
@@ -111,18 +112,18 @@ public class Client implements java.io.Serializable {
 		this.email = email;
 	}
 
-	public CourseSession getCourseSessionId() {
-		return courseSessionId;
+	public CourseSession getCourseSession() {
+		return courseSession;
 	}
 
-	public void setCourseSessionId(CourseSession courseSessionId) {
-		this.courseSessionId = courseSessionId;
+	public void setCourseSession(CourseSession courseSession) {
+		this.courseSession = courseSession;
 	}
 
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", address=" + address
-				+ ", phone=" + phone + ", email=" + email + ", courseSessionId=" + courseSessionId + "]";
+				+ ", phone=" + phone + ", email=" + email + ", courseSession=" + courseSession + "]";
 	}
 
 }
