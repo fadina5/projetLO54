@@ -17,25 +17,29 @@ public class LocationServiceImpl implements LocationService {
 
     public void addLocation(Location location) {
     	locationRepository.addLocation(location);
-    	System.out.println("La nouvelle location est: " + location);
+    	System.out.println("La nouvelle location est: " + location.toString());
     }
 
     public Location getLocation(Integer id) {
-        return locationRepository.getLocation(id);
+    	Location location= locationRepository.findLocation(id);
+    	System.out.println("la location correspondant à "+id+"est:" + location.toString());
+        return location ;
     }
 
     public void updateLocation(Location location) {
         location=locationRepository.updateLocation(location);
-        System.out.println("la location mise à jour est: " + location);
+        System.out.println("la location mise à jour est: " + location.toString());
     }
 
     public void deleteLocation(Integer id) {
     	locationRepository.deleteLocation(id);
-        System.out.println("la location a été supprimé");
+        System.out.println("la location avec pour"+id+ "a été supprimé");
     }
 
     public List<Location> getAllLocations() {
-        return locationRepository.getAllLocations();
+    	List<Location> locations= locationRepository.findAllLocations(); 
+    	System.out.println("la liste des locations : " + locations.toString());
+        return locations ;
     }
 
 

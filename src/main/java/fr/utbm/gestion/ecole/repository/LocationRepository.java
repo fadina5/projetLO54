@@ -13,114 +13,153 @@ import fr.utbm.gestion.ecole.entity.Location;
 
 @Repository
 public class LocationRepository {
-	
+
 	public Location addLocation(Location location) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-        try {
-            session.beginTransaction();
-            session.persist(location);
-            session.getTransaction().commit();
-        } catch (HibernateException hibernateException) {
-            System.err.println("Error createLocation. " + hibernateException);
-        } finally {
-            if (session != null) {
-                try {
-                    session.close();
-                } catch (HibernateException hibernateException) {
-                    System.err.println("Error closing hibernate session. " + hibernateException);
-                }
-            }
-        }
+		try {
+			session.beginTransaction();
+			session.persist(location);
+			session.getTransaction().commit();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
 
-        return location;
-    }
+			}
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException he) {
+					he.printStackTrace();
+				}
+			}
+		}
 
-    public Location getLocation(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Location location = new Location();
+		return location;
+	}
 
-        try {
-            location = session.get(Location.class, id);
-        } catch (HibernateException hibernateException) {
-            System.err.println("Error readLocation. " + hibernateException);
-        } finally {
-            if (session != null) {
-                try {
-                    session.close();
-                } catch (HibernateException hibernateException) {
-                    System.err.println("Error closing hibernate session. " + hibernateException);
-                }
-            }
-        }
+	public Location findLocation(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Location location = new Location();
 
-        return location;
-    }
+		try {
+			location = session.get(Location.class, id);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
 
-    public Location updateLocation(Location location) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+			}
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException he) {
+					he.printStackTrace();
+				}
+			}
+		}
 
-        try {
-            session.beginTransaction();
-            session.merge(location);
-            session.getTransaction().commit();
-        } catch (HibernateException hibernateException) {
-            System.err.println("Error updateLocation. " + hibernateException);
-        } finally {
-            if (session != null) {
-                try {
-                    session.close();
-                } catch (HibernateException hibernateException) {
-                    System.err.println("Error closing hibernate session. " + hibernateException);
-                }
-            }
-        }
+		return location;
+	}
 
-        return location;
-    }
+	public Location updateLocation(Location location) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-    public void deleteLocation(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			session.beginTransaction();
+			session.merge(location);
+			session.getTransaction().commit();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
 
-        try {
-            Location location = session.get(Location.class, id);
-            assert location != null;
-            session.beginTransaction();
-            session.delete(location);
-            session.getTransaction().commit();
-        } catch (HibernateException hibernateException) {
-            System.err.println("Error deleteLocation. " + hibernateException);
-        } finally {
-            if (session != null) {
-                try {
-                    session.close();
-                } catch (HibernateException hibernateException) {
-                    System.err.println("Error closing hibernate session. " + hibernateException);
-                }
-            }
-        }
-    }
+			}
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException he) {
+					he.printStackTrace();
+				}
+			}
+		}
 
-    @SuppressWarnings("unchecked")
-    public List<Location> getAllLocations() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Location> locations = new ArrayList<>();
+		return location;
+	}
 
-        try {
-            Query<Location> query = session.createQuery("FROM LOCATION");
-            locations = query.list();
-        } catch (HibernateException he) {
-            System.err.println("Error getAllLocations. " + he);
-        } finally {
-            if (session != null) {
-                try {
-                    session.close();
-                } catch (HibernateException he) {
-                    System.err.println("Error closing hibernate session. " + he);
-                }
-            }
-        }
+	public void deleteLocation(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-        return locations;
-    }
+		try {
+			Location location = session.get(Location.class, id);
+			assert location != null;
+			session.beginTransaction();
+			session.delete(location);
+			session.getTransaction().commit();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException he) {
+					he.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Location> findAllLocations() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Location> locations = new ArrayList<>();
+
+		try {
+			Query<Location> query = session.createQuery("from Location");
+			locations = query.list();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException he) {
+					he.printStackTrace();
+				}
+			}
+		}
+		return locations;
+	}
 }

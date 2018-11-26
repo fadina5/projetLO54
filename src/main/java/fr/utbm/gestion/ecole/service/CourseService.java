@@ -8,11 +8,12 @@ public interface CourseService {
 	
 	public void addCourse(Course course);
 
-	//public Course getCourse(String code);
+	public Course getCourse(String code);
 
 	public void updateCourse(Course course);
 
 	public void deleteCourse(String code);
 
 	public List<Course> getAllCourses();
+	
 }

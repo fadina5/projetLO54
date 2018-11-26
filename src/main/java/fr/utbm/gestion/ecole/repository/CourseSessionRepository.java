@@ -9,26 +9,36 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import fr.utbm.gestion.ecole.config.HibernateUtil;
+import fr.utbm.gestion.ecole.config.Util;
 import fr.utbm.gestion.ecole.entity.CourseSession;
 
 @Repository
 public class CourseSessionRepository {
 
 	public CourseSession addCourseSession(CourseSession courseSession) {
+
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		try {
 			session.beginTransaction();
 			session.persist(courseSession);
 			session.getTransaction().commit();
-		} catch (HibernateException hibernateException) {
-			System.err.println("Error addCourseSession. " + hibernateException);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
 		} finally {
 			if (session != null) {
 				try {
 					session.close();
 				} catch (HibernateException he) {
-					System.err.println("Error closing hibernate session. " + he);
+					he.printStackTrace();
 				}
 			}
 		}
@@ -36,27 +46,35 @@ public class CourseSessionRepository {
 		return courseSession;
 	}
 
-	/*public CourseSession getCourseSession(Integer id) {
+	public CourseSession findCourseSession(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		CourseSession courseSession = null;
+		CourseSession courseSession = new CourseSession();
 
 		try {
 			courseSession = session.get(CourseSession.class, id);
-			Hibernate.initialize(courseSession.getClients());
-		} catch (HibernateException hibernateException) {
-			System.err.println("Error readCourseSession. " + hibernateException);
+
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
 		} finally {
 			if (session != null) {
 				try {
 					session.close();
-				} catch (HibernateException hibernateException) {
-					System.err.println("Error closing hibernate session. " + hibernateException);
+				} catch (HibernateException he) {
+					he.printStackTrace();
 				}
 			}
 		}
 
 		return courseSession;
-	}*/
+	}
 
 	public CourseSession updateCourseSession(CourseSession courseSession) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,14 +83,22 @@ public class CourseSessionRepository {
 			session.beginTransaction();
 			session.merge(courseSession);
 			session.getTransaction().commit();
-		} catch (HibernateException hibernateException) {
-			System.err.println("Error updateCourseSession. " + hibernateException);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
 		} finally {
 			if (session != null) {
 				try {
 					session.close();
-				} catch (HibernateException hibernateException) {
-					System.err.println("Error closing hibernate session. " + hibernateException);
+				} catch (HibernateException he) {
+					he.printStackTrace();
 				}
 			}
 		}
@@ -89,36 +115,55 @@ public class CourseSessionRepository {
 			session.beginTransaction();
 			session.delete(courseSession);
 			session.getTransaction().commit();
-		} catch (HibernateException hibernateException) {
-			System.err.println("Error deleteCourseSession. " + hibernateException);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
 		} finally {
 			if (session != null) {
 				try {
 					session.close();
-				} catch (HibernateException hibernateException) {
-					System.err.println("Error closing hibernate session. " + hibernateException);
+				} catch (HibernateException he) {
+					he.printStackTrace();
 				}
 			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<CourseSession> getAllCourseSessions() {
+	public List<CourseSession> findAllCourseSessions() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<CourseSession> courseSessions = new ArrayList<>();
 
 		try {
 			Query<CourseSession> query = session.createQuery("from CourseSession");
 			courseSessions = query.list();
+			// define percentage
+			courseSessions.forEach(courseSession -> courseSession.setClientPercentage(
+					Util.getIntegerPercent(courseSession.getClients().size(), courseSession.getMax())));
 
-		} catch (HibernateException hibernateException) {
-			System.err.println("Error getAllCourseSessions. " + hibernateException);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (session.getTransaction() != null) {
+				try {
+					session.getTransaction().rollback();
+				} catch (HibernateException he2) {
+					he2.printStackTrace();
+				}
+
+			}
 		} finally {
 			if (session != null) {
 				try {
 					session.close();
-				} catch (HibernateException hibernateException) {
-					System.err.println("Error closing hibernate session. " + hibernateException);
+				} catch (HibernateException he) {
+					he.printStackTrace();
 				}
 			}
 		}

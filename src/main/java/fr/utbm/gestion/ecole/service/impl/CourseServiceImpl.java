@@ -17,25 +17,30 @@ public class CourseServiceImpl implements CourseService  {
 	
 	public void addCourse(Course course) {
         course =courseRepository.addCourse(course); 
-        System.out.println("le nouveau cours inséré est: " + course);
+        System.out.println("le nouveau cours inséré est: " + course.toString());
     }
 
-   // public Course getCourse(String code) {
-     //   return courseRepository.getCourse(code);
-   // }
+   public Course getCourse(String code) {
+	  Course course = courseRepository.findCourse(code);
+      System.out.println("le cours correspondant au "+code+"est : " + course.toString());
+      return course;
+      
+    }
 
     public void updateCourse(Course course) {
        course=courseRepository.updateCourse(course);
-        System.out.println("la mise à jour du cours est: " + course);
+        System.out.println("la mise à jour du cours est: " + course.toString());
     }
 
     public void deleteCourse(String code) {
     	courseRepository.deleteCourse(code);
-        System.out.println("Deleted Course " + code);
+        System.out.println("le cours avec pour " + code +" a été supprimé");
     }
 
     public List<Course> getAllCourses() {
-        return courseRepository.getAllCourses();
+    	List<Course> courses = courseRepository.findAllCourses();
+    	System.out.println("la liste des cours: " + courses.toString());
+    	return courses;
     }
 
 

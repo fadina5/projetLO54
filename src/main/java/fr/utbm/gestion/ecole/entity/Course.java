@@ -1,8 +1,13 @@
 package fr.utbm.gestion.ecole.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +24,10 @@ public class Course implements java.io.Serializable {
 
 	@Column(name = "COURS_TITLE")
 	private String titre;
-
+	
+	@OneToMany(mappedBy ="course", cascade = CascadeType.ALL)
+    private List<CourseSession> courseSessions = new ArrayList<>();
+	
 	public Course() {
 		super();
 	}
@@ -47,6 +55,14 @@ public class Course implements java.io.Serializable {
 		this.titre = titre;
 	}
 	
+	public List<CourseSession> getCourseSessions() {
+		return courseSessions;
+	}
+
+	public void setCourseSessions(List<CourseSession> courseSessions) {
+		this.courseSessions = courseSessions;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [code=" + code + ", titre=" + titre + "]";

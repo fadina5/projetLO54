@@ -18,25 +18,29 @@ public class ClientServiceImpl implements ClientService {
 	
 	public void addClient(Client client) {
         client = clientRepository.addClient(client);
-        System.out.println("Le nouveau client est: " + client);
+        System.out.println("Le nouveau client est: " + client.toString());
     }
 
     public Client getClient(Integer id) {
-        return clientRepository.getClient(id);
+    	Client client=clientRepository.findClient(id);
+    	System.out.println("Le client corresppondant à "+id+ "est: " + client.toString());
+        return client;
         
     }
 
-    public void updateCustomer(Client client) {
-        client=clientRepository.updateCustomer(client);
-        System.out.println("Le client mise à jour :" + client);
+    public void updateClient(Client client) {
+        client=clientRepository.updateClient(client);
+        System.out.println("Le client mise à jour :" + client.toString());
     }
 
     public void deleteClient(Integer id) {
     	clientRepository.deleteClient(id);
-        System.out.println("le client a été supprimé");
+        System.out.println("le client avec pour "+id+ "a été supprimé");
     }
 
-    public List<Client> getAllCustomers() {
-        return clientRepository.getAllClients();
+    public List<Client> getAllClients() {
+    	List<Client> clients=clientRepository.findAllClients();
+    	System.out.println("la liste des clients: " + clients.toString());
+        return clients;
     }
 }

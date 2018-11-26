@@ -1,18 +1,21 @@
 package fr.utbm.gestion.ecole.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "COURSE_SESSION")
@@ -31,7 +34,7 @@ public class CourseSession implements java.io.Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CS_START_DATE")
 	private Date startDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CS_END_DATE")
 	private Date endDate;
@@ -39,27 +42,32 @@ public class CourseSession implements java.io.Serializable {
 	@Column(name = "CS_MAX")
 	private Integer max;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "COURS_CODE")
-	private Course courseCode;
+	private Course course;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "LOC_ID")
-	private Location locationId;
+	private Location location;
+
+	@OneToMany(mappedBy = "courseSession")
+	private List<Client> clients = new ArrayList<>();
+
+	@Transient
+	private Integer clientPercentage;
 
 	public CourseSession() {
 		super();
 	}
 
-	public CourseSession(Integer id, Date startDate, Date endDate, Integer max, Course courseCode,
-			Location locationId) {
+	public CourseSession(Integer id, Date startDate, Date endDate, Integer max, Course course, Location location) {
 		super();
 		this.id = id;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.max = max;
-		this.courseCode = courseCode;
-		this.locationId = locationId;
+		this.course = course;
+		this.location = location;
 	}
 
 	public Integer getId() {
@@ -94,26 +102,42 @@ public class CourseSession implements java.io.Serializable {
 		this.max = max;
 	}
 
-	public Course getCourseCode() {
-		return courseCode;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseCode(Course courseCode) {
-		this.courseCode = courseCode;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
-	public Location getLocationId() {
-		return locationId;
+	public Location getLocation() {
+		return location;
 	}
 
-	public void setLocationId(Location locationId) {
-		this.locationId = locationId;
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+	
+	public Integer getClientPercentage() {
+		return clientPercentage;
+	}
+
+	public void setClientPercentage(Integer clientPercentage) {
+		this.clientPercentage = clientPercentage;
 	}
 
 	@Override
 	public String toString() {
 		return "CourseSession [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", max=" + max
-				+ ", courseCode=" + courseCode + ", locationId=" + locationId + "]";
+				+ ", course=" + course + ", location=" + location + ", clients=" + clients + "]";
 	}
 
 }

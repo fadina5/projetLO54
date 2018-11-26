@@ -10,10 +10,10 @@ public interface ClientService {
 
 	public Client getClient(Integer id);
 
-	public void updateCustomer(Client client);
+	public void updateClient(Client client);
 
 	public void deleteClient(Integer id);
 
-	List<Client> getAllCustomers();
+	List<Client> getAllClients();
 
 }
