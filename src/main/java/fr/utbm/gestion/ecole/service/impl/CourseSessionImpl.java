@@ -56,7 +56,7 @@ public class CourseSessionImpl implements CourseSessionService {
 
 		// Check if course session not full
 		if (courseSession.getClients().size() == courseSession.getMax()) {
-			throw new Exception("La session de cours des pleine");
+			throw new Exception("La session de cours est pleine");
 		}
 
 		// Set course session and create a customer
