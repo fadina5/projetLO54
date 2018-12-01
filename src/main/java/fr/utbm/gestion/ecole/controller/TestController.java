@@ -3,12 +3,14 @@ package fr.utbm.gestion.ecole.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.utbm.gestion.ecole.entity.Course;
 import fr.utbm.gestion.ecole.entity.CourseSession;
@@ -16,6 +18,7 @@ import fr.utbm.gestion.ecole.service.impl.CourseServiceImpl;
 import fr.utbm.gestion.ecole.service.impl.CourseSessionImpl;
 
 @RestController
+@PropertySource("classpath:application.properties")
 public class TestController {
 	
 	@Autowired
@@ -57,6 +60,13 @@ public class TestController {
 		courseServiceImpl.deleteCourse(code);
         return new ResponseEntity<Course>(HttpStatus.OK);
     }
+	
+	@RequestMapping("/about")
+	public ModelAndView aboutPage(ModelAndView model){
+		model.addObject("MESSAGE","About Us Page");
+		model.setViewName("about");
+		return model;
+	}
 	
 	
 	
