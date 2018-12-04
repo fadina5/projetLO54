@@ -1,4 +1,4 @@
-package fr.utbm.gestion.ecole.config;
+package fr.utbm.gestion.ecole.tools;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

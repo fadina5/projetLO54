@@ -1,16 +1,17 @@
 package fr.utbm.gestion.ecole.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.utbm.gestion.ecole.config.Util;
 import fr.utbm.gestion.ecole.entity.Client;
 import fr.utbm.gestion.ecole.entity.CourseSession;
 import fr.utbm.gestion.ecole.repository.ClientRepository;
 import fr.utbm.gestion.ecole.repository.CourseSessionRepository;
 import fr.utbm.gestion.ecole.service.CourseSessionService;
+import fr.utbm.gestion.ecole.tools.Util;
 
 @Service
 public class CourseSessionImpl implements CourseSessionService {
@@ -47,26 +48,20 @@ public class CourseSessionImpl implements CourseSessionService {
 		return coursesSession;
 	}
 
-	public void registerClent(String courseSessionId, Client client) throws Exception {
-		// Parse parameter(s)
-		Integer id = Util.convertStringToInteger(courseSessionId);
-
-		// Read course session from id
+	public void registerClient(String idcourseSession, Client client) throws Exception {
+		Integer id = Util.convertStringToInteger(idcourseSession);
 		CourseSession courseSession = courseSessionRepository.findCourseSession(id);
-
-		// Check if course session not full
 		if (courseSession.getClients().size() == courseSession.getMax()) {
 			throw new Exception("La session de cours est pleine");
 		}
-
-		// Set course session and create a customer
 		client.setCourseSession(courseSession);
 		clientRepository.addClient(client);
-
-		// Add customer to list of customers
 		courseSession.getClients().add(client);
 		courseSessionRepository.updateCourseSession(courseSession);
 		System.out.println("Le client enregistré est: " + client.toString());
 	}
+	public List<CourseSession> filteredCourseSessions(String titre, Date date, Integer idlocation) {
+		return this.courseSessionRepository.getFilterCourseSessions(titre, date, idlocation);
+    }
 
 }

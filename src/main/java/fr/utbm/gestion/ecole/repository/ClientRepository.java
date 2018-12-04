@@ -8,8 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import fr.utbm.gestion.ecole.config.HibernateUtil;
 import fr.utbm.gestion.ecole.entity.Client;
+import fr.utbm.gestion.ecole.tools.HibernateUtil;
 
 @Repository
 public class ClientRepository {
@@ -51,6 +51,7 @@ public class ClientRepository {
 
 		try {
 			client = session.get(Client.class, id);
+			
 		} catch (HibernateException he) {
 			he.printStackTrace();
 			if (session.getTransaction() != null) {

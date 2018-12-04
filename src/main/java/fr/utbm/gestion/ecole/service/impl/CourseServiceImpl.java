@@ -42,6 +42,9 @@ public class CourseServiceImpl implements CourseService  {
     	System.out.println("la liste des cours: " + courses.toString());
     	return courses;
     }
+    public List<Course> getCoursesByTitle(String titre) {
+        return this.courseRepository.findCoursesByTitre(titre);
+    }
 
 
 }

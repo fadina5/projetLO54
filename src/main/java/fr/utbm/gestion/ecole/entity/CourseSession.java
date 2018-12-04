@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
 
 @Entity
 @Table(name = "COURSE_SESSION")
@@ -31,11 +31,9 @@ public class CourseSession implements java.io.Serializable {
 	@Column(name = "CS_ID")
 	private Integer id;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "CS_START_DATE")
 	private Date startDate;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "CS_END_DATE")
 	private Date endDate;
 
@@ -49,8 +47,8 @@ public class CourseSession implements java.io.Serializable {
 	@ManyToOne
 	@JoinColumn(name = "LOC_ID")
 	private Location location;
-
-	@OneToMany(mappedBy = "courseSession")
+ 
+	@OneToMany(mappedBy = "courseSession",fetch = FetchType.LAZY)
 	private List<Client> clients = new ArrayList<>();
 
 	@Transient

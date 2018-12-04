@@ -8,8 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import fr.utbm.gestion.ecole.config.HibernateUtil;
 import fr.utbm.gestion.ecole.entity.Location;
+import fr.utbm.gestion.ecole.tools.HibernateUtil;
 
 @Repository
 public class LocationRepository {

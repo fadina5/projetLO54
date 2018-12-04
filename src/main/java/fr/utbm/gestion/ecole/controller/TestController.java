@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import fr.utbm.gestion.ecole.entity.Course;
 import fr.utbm.gestion.ecole.entity.CourseSession;
@@ -60,15 +59,6 @@ public class TestController {
 		courseServiceImpl.deleteCourse(code);
         return new ResponseEntity<Course>(HttpStatus.OK);
     }
-	
-	@RequestMapping("/about")
-	public ModelAndView aboutPage(ModelAndView model){
-		model.addObject("MESSAGE","About Us Page");
-		model.setViewName("about");
-		return model;
-	}
-	
-	
 	
 	
 }

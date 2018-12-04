@@ -16,4 +16,6 @@ public interface CourseService {
 
 	public List<Course> getAllCourses();
 	
+	public List<Course> getCoursesByTitle(String titre);
+	
 }
