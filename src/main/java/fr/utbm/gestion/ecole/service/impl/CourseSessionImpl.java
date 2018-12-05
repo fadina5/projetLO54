@@ -60,8 +60,9 @@ public class CourseSessionImpl implements CourseSessionService {
 		courseSessionRepository.updateCourseSession(courseSession);
 		System.out.println("Le client enregistré est: " + client.toString());
 	}
-	public List<CourseSession> filteredCourseSessions(String titre, Date date, Integer idlocation) {
-		return this.courseSessionRepository.getFilterCourseSessions(titre, date, idlocation);
+	public List<CourseSession> filteredCourseSessions(String titre, String date, Integer idlocation) {
+		Date newDate=Util.convertStringToDate(date);
+		return this.courseSessionRepository.getFilterCourseSessions(titre, newDate, idlocation);
     }
 
 }

@@ -1,52 +1,57 @@
 
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"
+	language="java"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html lang="fr">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%@ include file="styles.jsp" %>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<%@ include file="styles.jsp"%>
 
-    <title>Gestion des formations</title>
+<title>Gestion des formations</title>
 </head>
 <body>
-<nav class="navbar sticky-top navbar-dark bg-dark justify-content-center">
-    <a class="navbar-brand" href="<c:url value="/"/>">
-        Gestion des formations 
-    </a>
-</nav>
+	<nav
+		class="navbar sticky-top navbar-light bg-dark justify-content-center">
+		<a class="navbar-brand"> Gestion des formations </a>
+	</nav>
 
-<div class="container-fluid course">
-    <div class="card text-center">
-        <div class="card-header">
-          <h4>${course.code}</h4>:</h5>${course.titre}</h5>
-        </div>
-        <div class="card-footer text-muted">
-            ${course.courseSessions.size()} session(s)
-        </div>
-    </div>
+	<nav class="navbar navbar-light bg-light">
+		<h5 class="my-0 mr-md-auto font-weight-normal">
+			<a class="navbar-brand" href="<c:url value="/"/>"> <i
+				class="fas fa-home mr-2"></i> <span><strong>Home</strong></span>
+			</a>
+		</h5>
+	</nav>
 
-    <div class="border rounded sessions-box">
-        <div class="row">
+	<div class="container col-8">
+		<div class="card">
+			<h4 class="card-header">${course.code}:${course.titre}</h4>
+			<div class="card-body">
+			
             <c:forEach items="${course.courseSessions}" var="courseSession" varStatus="status">
-                <div class="col-4 card-session">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Session ${status.index + 1}</h5>
+               
+			
+                    
+                            <h5 class="card-text">Session ${status.index + 1}</h5>
                             <p class="card-text">
                                 Début :
                                 <span class="highlight">
                                     <fmt:formatDate value="${courseSession.startDate}" pattern="dd/MM/yy"/>
                                 </span>
+                                
                                 &nbsp; - &nbsp;
                                 Fin :
                                 <span class="highlight">
                                     <fmt:formatDate value="${courseSession.endDate}" pattern="dd/MM/yy"/>
                                 </span>
-                                <br>
+                                </p>
+                                 <p class="card-text">
+                             
                                 Ville :
                                 <span class="highlight">
                                         ${courseSession.location.city}
@@ -74,13 +79,19 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                       
+                
+                
             </c:forEach>
-        </div>
+     
+	
+				<p class="card-title"></p>
+			
+			<div class="card-footer justify-content-center text-muted">
+				Nombre de sessions disponibles(${course.courseSessions.size()})
+			</div>
+			   </div>
     </div>
-
-</div>
-
-<%@ include file="scripts.jsp" %>
+		</div>
+	
+	<%@ include file="scripts.jsp"%>

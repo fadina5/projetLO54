@@ -2,13 +2,16 @@ package fr.utbm.gestion.ecole.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.utbm.gestion.ecole.entity.Client;
 import fr.utbm.gestion.ecole.entity.Course;
+import fr.utbm.gestion.ecole.entity.CourseSession;
 import fr.utbm.gestion.ecole.service.impl.CourseServiceImpl;
 import fr.utbm.gestion.ecole.service.impl.CourseSessionImpl;
 import fr.utbm.gestion.ecole.service.impl.LocationServiceImpl;
@@ -26,10 +29,13 @@ public class IndexController {
 	@Autowired
 	private CourseSessionImpl courseSessionImpl;
 
-	@GetMapping("/")
-	public ModelAndView showHome(@RequestParam(required = false) Integer p) {
-		ModelAndView modelAndView = new ModelAndView("home");
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView getHome(@RequestParam(required = false) Integer p) {
+		
+	       
+		ModelAndView modelAndView = new ModelAndView("home");
+		modelAndView.addObject("client", new Client());
 		PagedListHolder<Course> coursePagedListHolder = new PagedListHolder<>(this.courseServiceImpl.getAllCourses());
 		coursePagedListHolder.setPageSize(Util.COURSE_PER_PAGE);
 
@@ -44,14 +50,13 @@ public class IndexController {
 		return modelAndView;
 	}
 
-	/*@PostMapping("search")
-	public ModelAndView showSearchResults(@RequestParam(value = "title", defaultValue = "") String titre,
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView showSearchResults(@RequestParam(value = "titre", defaultValue = "") String titre,
 			@RequestParam(value = "page-number", required = false) Integer p) {
 		ModelAndView modelAndView = new ModelAndView("home");
 
-		PagedListHolder<Course> coursePagedListHolder = new PagedListHolder<>(
-				this.courseServiceImpl.getCoursesByTitle(titre);
-		coursePagedListHolder.setPageSize(Util.MAX_COURSE_PER_PAGE);
+		PagedListHolder<Course> coursePagedListHolder = new PagedListHolder<>(this.courseServiceImpl.getCoursesByTitre(titre));
+		coursePagedListHolder.setPageSize(Util.COURSE_PER_PAGE);
 
 		if (p == null || p < 1 || p > coursePagedListHolder.getPageCount()) {
 			p = 1;
@@ -59,22 +64,21 @@ public class IndexController {
 		coursePagedListHolder.setPage(p - 1);
 		modelAndView.addObject("page", p);
 		modelAndView.addObject("coursePagedListHolder", coursePagedListHolder);
-
 		modelAndView.addObject("advanced", false);
 		modelAndView.addObject("titre", titre);
 		modelAndView.addObject("locations", this.locationServiceImpl.getAllLocations());
 		return modelAndView;
 	}
 
-	/*@PostMapping("advanced-search")
-	public ModelAndView showAdancedSearchResults(@RequestParam("title") String titre, @RequestParam("date") Date date,
+	@RequestMapping(value = "/advanced-search", method = RequestMethod.POST)
+	public ModelAndView showAdancedSearchResults(@RequestParam("titre") String titre, @RequestParam("date") String date,
 			@RequestParam("location") Integer idLocation,
 			@RequestParam(value = "page-number", required = false) Integer p) {
 		ModelAndView modelAndView = new ModelAndView("home");
 
 		PagedListHolder<CourseSession> courseSessionPagedListHolder = new PagedListHolder<>(
-				this.courseSessionImpl.getFilteredCourseSessions(titre, date, idLocation));
-		courseSessionPagedListHolder.setPageSize(Util.MAX_COURSESESSION_PER_PAGE);
+		this.courseSessionImpl.filteredCourseSessions(titre, date, idLocation));
+		courseSessionPagedListHolder.setPageSize(Util.COURSESESSION_PER_PAGE);
 
 		if (p == null || p < 1 || p > courseSessionPagedListHolder.getPageCount()) {
 			p = 1;
@@ -82,13 +86,12 @@ public class IndexController {
 		courseSessionPagedListHolder.setPage(p - 1);
 		modelAndView.addObject("page", p);
 		modelAndView.addObject("courseSessionPagedListHolder", courseSessionPagedListHolder);
-
 		modelAndView.addObject("advanced", true);
-		modelAndView.addObject("title", titre);
+		modelAndView.addObject("titre", titre);
 		modelAndView.addObject("date", date);
 		modelAndView.addObject("location", idLocation);
 		modelAndView.addObject("locations", this.locationServiceImpl.getAllLocations());
 		return modelAndView;
-	}*/
+	}
 
 }

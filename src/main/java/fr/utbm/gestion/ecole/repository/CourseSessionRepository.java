@@ -186,7 +186,7 @@ public class CourseSessionRepository {
 			Criteria criteria = session.createCriteria(CourseSession.class);
 
 			if (date != null) {
-				criteria.add(Restrictions.between("startDate", date, date));
+				criteria.add(Restrictions.between("startDate", date,date));
 			}
 			if (location != null) {
 				criteria.add(Restrictions.eq("location.id", location));
@@ -194,8 +194,6 @@ public class CourseSessionRepository {
 			if (titre != null) {
 				criteria.createCriteria("course").add(Restrictions.ilike("titre", "%" + titre + "%"));
 			}
-			criteria.addOrder(Order.desc("course.code"));
-			criteria.addOrder(Order.asc("startDate"));
 			courseSessions = criteria.list();
 			courseSessions.forEach(courseSession -> courseSession.setClientPercentage(
 					Util.getIntegerToPercent(courseSession.getClients().size(), courseSession.getMax())));

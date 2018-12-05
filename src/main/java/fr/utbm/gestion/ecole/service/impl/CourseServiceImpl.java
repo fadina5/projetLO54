@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseService  {
 
    public Course getCourse(String code) {
 	  Course course = courseRepository.findCourse(code);
-      System.out.println("le cours correspondant au "+code+"est : " + course.toString());
+      System.out.println("le cours correspondant au  code "+code+" est : " + course.toString());
       return course;
       
     }
@@ -42,7 +42,7 @@ public class CourseServiceImpl implements CourseService  {
     	System.out.println("la liste des cours: " + courses.toString());
     	return courses;
     }
-    public List<Course> getCoursesByTitle(String titre) {
+    public List<Course> getCoursesByTitre(String titre) {
         return this.courseRepository.findCoursesByTitre(titre);
     }
 

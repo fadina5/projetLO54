@@ -1,6 +1,5 @@
 package fr.utbm.gestion.ecole.service;
 
-import java.util.Date;
 import java.util.List;
 
 import fr.utbm.gestion.ecole.entity.Client;
@@ -20,5 +19,5 @@ public interface CourseSessionService {
 	
 	public void registerClient(String idcourseSession, Client client) throws Exception;
 	
-	public List<CourseSession> filteredCourseSessions(String titre, Date date, Integer idlocation);
+	public List<CourseSession> filteredCourseSessions(String titre, String date, Integer idlocation);
 }
