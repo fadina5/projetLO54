@@ -30,9 +30,12 @@
 
 	<div class="container col-8">
 		<div class="card">
-			<h4 class="card-header">${course.code}:${course.titre}</h4>
+			<h4 class="card-header"><strong>${course.code}:${course.titre}</strong></h4>
 			<div class="card-body">
-			
+			<div class="card-footer justify-content-center text-muted">
+				Nombre de sessions disponibles: ${course.courseSessions.size()}
+			</div>
+			<p class="card-text"></p>
             <c:forEach items="${course.courseSessions}" var="courseSession" varStatus="status">
                
 			
@@ -74,7 +77,7 @@
                                 <div class="col">
                                     <a href="<c:url value="/course-session/${courseSession.id}"/>"
                                        class="btn btn-primary btn-block">
-                                        Pré-inscription
+                                        Préinscription
                                         <i class="fas fa-angle-right ml-2"></i>
                                     </a>
                                 </div>
@@ -87,9 +90,7 @@
 	
 				<p class="card-title"></p>
 			
-			<div class="card-footer justify-content-center text-muted">
-				Nombre de sessions disponibles(${course.courseSessions.size()})
-			</div>
+			
 			   </div>
     </div>
 		</div>
