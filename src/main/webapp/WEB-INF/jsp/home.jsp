@@ -164,6 +164,82 @@
 				
 			</c:if>
 		</div>
+		 <c:if test="${advanced == true}">
+            <div class="row justify-content-center mb-2">
+                <span class="search-result px-4 py-2 rounded">${courseSessionPagedListHolder.nrOfElements} sessions(s) trouvée(s)</span>
+            </div>
+
+            <div class="border rounded sessions-box">
+                <div class="row">
+                    <c:forEach items="${courseSessionPagedListHolder.pageList}" var="courseSession">
+                        <div class="col-6 card-session">
+                        <div class="card">
+                            <h4 class="card-header"><strong>${courseSession.course.code}:${courseSession.course.titre}</strong></h4>
+                                <div class="card-body">
+                                   
+					<h5 class="card-text">Session ${status.index + 1}</h5>
+                          			<p class="card-text">
+                                Début :
+                                <span class="highlight">
+                                    <fmt:formatDate value="${courseSession.startDate}" pattern="dd/MM/yy"/>
+                                </span>
+                                
+                                &nbsp; - &nbsp;
+                                Fin :
+                                <span class="highlight">
+                                    <fmt:formatDate value="${courseSession.endDate}" pattern="dd/MM/yy"/>
+                                </span>
+                                </p>
+                                 <p class="card-text">
+                             
+                                Ville :
+                                <span class="highlight">
+                                        ${courseSession.location.city}
+                                </span>
+                            </p>
+
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="progress session">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated
+                                                ${courseSession.clientPercentage == 100 ? "bg-danger" : "bg-success"}"
+                                                     role="progressbar"
+                                                     aria-valuenow="${courseSession.clientPercentage}"
+                                                     aria-valuemin="0" aria-valuemax="100"
+                                                     style="width: ${courseSession.clientPercentage}%">
+                                                    <span class="progress-value">${courseSession.clientPercentage}%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <a href="<c:url value="/course-session/${courseSession.id}"/>"
+                                               class="btn btn-primary btn-block">
+                                                Préinscription
+                                                <i class="fas fa-angle-right ml-2"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                    </c:forEach>
+                </div>
+                <nav class="py-2">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <span class="page-link">Page</span>
+                        </li>
+                        <c:forEach begin="1" end="${courseSessionPagedListHolder.pageCount}" step="1" varStatus="i">
+                            <li class="page-item${page == i.index ? ' active':''}">
+                                <a class="page-link" href="#" onclick="submitFormAdvanced(${i.index})">${i.index}</a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </nav>
+            </div>
+        </c:if>
+		
 </div>
 </div>
 

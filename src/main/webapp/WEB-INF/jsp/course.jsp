@@ -22,8 +22,9 @@
 
 	<nav class="navbar navbar-light bg-light">
 		<h5 class="my-0 mr-md-auto font-weight-normal">
-			<a class="navbar-brand" href="<c:url value="/"/>"> <i
-				class="fas fa-home mr-2"></i> <span><strong>Home</strong></span>
+			<a class="navbar-brand" href="<c:url value="/"/>"> 
+			<i class="fas fa-caret-left mr-2"></i> <span><strong>Retour</strong></span>
+			
 			</a>
 		</h5>
 	</nav>
