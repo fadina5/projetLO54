@@ -25,6 +25,9 @@ public class Course implements java.io.Serializable {
 	@Column(name = "COURS_TITLE")
 	private String titre;
 	
+	@Column(name = "COURS_DESCRIPTION")
+	private String description;
+	
 	@OneToMany(mappedBy ="course", cascade = CascadeType.ALL)
     private List<CourseSession> courseSessions = new ArrayList<>();
 	
@@ -32,11 +35,12 @@ public class Course implements java.io.Serializable {
 		super();
 	}
 
-	public Course(String code, String titre) {
+	public Course(String code, String titre,String description) {
 		super();
 
 		this.code = code;
 		this.titre = titre;
+		this.description=description;
 	}
 
 	public String getCode() {
@@ -55,6 +59,15 @@ public class Course implements java.io.Serializable {
 		this.titre = titre;
 	}
 	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public List<CourseSession> getCourseSessions() {
 		return courseSessions;
 	}

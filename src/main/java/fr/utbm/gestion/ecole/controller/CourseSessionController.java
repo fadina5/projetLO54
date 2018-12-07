@@ -3,15 +3,20 @@ package fr.utbm.gestion.ecole.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import fr.utbm.gestion.ecole.entity.Client;
@@ -53,6 +58,35 @@ public class CourseSessionController {
 
 	        return modelAndView;
 	    }
+		@PostMapping("/{id}/register")
+	    public ModelAndView registerClient(@PathVariable("id") Integer id,
+	                                       @Valid @ModelAttribute("client") Client client,
+	                                       BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+	        String nextUrl = "redirect:/course-session/" + id + "?success=";
+
+	        // Redirect back into form page if there are validation errors
+	        if (bindingResult.hasErrors()) {
+	            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customer", bindingResult);
+	            redirectAttributes.addFlashAttribute("client", client);
+	            return new ModelAndView(nextUrl);
+	        }
+
+	        // Try proceeding registration
+	        try {
+	            this.courseSessionImpl.registerClient(id, client);
+	        } catch (Exception e) {
+	            System.err.println(e.toString());
+	            nextUrl += "false";
+	            // Check if exception is due to max of courseSession
+	            if (e.getMessage().equals("courseSession.full")) {
+	                nextUrl += "&full=true";
+	            }
+	        }
+
+	        return new ModelAndView(nextUrl);
+	    }
+		
 
 	   
 

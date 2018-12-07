@@ -17,7 +17,7 @@ public interface CourseSessionService {
 
 	public List<CourseSession> getAllCoursesSessions();
 	
-	public void registerClient(String idcourseSession, Client client) throws Exception;
+	public void registerClient(Integer idcourseSession, Client client) throws Exception;
 	
 	public List<CourseSession> filteredCourseSessions(String titre, String date, Integer idlocation);
 }

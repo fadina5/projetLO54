@@ -1,3 +1,12 @@
+
 /* --------- Theme --------- */
 @import url(theme.css);
 
+.navbar {
+    padding: 0.25rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+  
+}

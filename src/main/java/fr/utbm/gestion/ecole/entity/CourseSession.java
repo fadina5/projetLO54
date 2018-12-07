@@ -27,7 +27,7 @@ public class CourseSession implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CS_ID")
 	private Integer id;
 
@@ -58,9 +58,9 @@ public class CourseSession implements java.io.Serializable {
 		super();
 	}
 
-	public CourseSession(Integer id, Date startDate, Date endDate, Integer max, Course course, Location location) {
+	public CourseSession(Date startDate, Date endDate, Integer max, Course course, Location location) {
 		super();
-		this.id = id;
+		
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.max = max;

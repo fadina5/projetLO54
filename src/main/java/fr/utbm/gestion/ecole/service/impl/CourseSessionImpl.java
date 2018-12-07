@@ -48,9 +48,9 @@ public class CourseSessionImpl implements CourseSessionService {
 		return coursesSession;
 	}
 
-	public void registerClient(String idcourseSession, Client client) throws Exception {
-		Integer id = Util.convertStringToInteger(idcourseSession);
-		CourseSession courseSession = courseSessionRepository.findCourseSession(id);
+	public void registerClient(Integer idcourseSession, Client client) throws Exception {
+		//Integer id = Util.convertStringToInteger(idcourseSession);
+		CourseSession courseSession = courseSessionRepository.findCourseSession(idcourseSession);
 		if (courseSession.getClients().size() == courseSession.getMax()) {
 			throw new Exception("La session de cours est pleine");
 		}

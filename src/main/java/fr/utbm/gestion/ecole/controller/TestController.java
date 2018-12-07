@@ -1,5 +1,6 @@
 package fr.utbm.gestion.ecole.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.utbm.gestion.ecole.entity.Client;
 import fr.utbm.gestion.ecole.entity.Course;
 import fr.utbm.gestion.ecole.entity.CourseSession;
+import fr.utbm.gestion.ecole.entity.Location;
+import fr.utbm.gestion.ecole.service.impl.ClientServiceImpl;
 import fr.utbm.gestion.ecole.service.impl.CourseServiceImpl;
 import fr.utbm.gestion.ecole.service.impl.CourseSessionImpl;
 
@@ -25,6 +29,10 @@ public class TestController {
 	
 	@Autowired
 	private CourseServiceImpl courseServiceImpl;
+	
+	@Autowired
+	private ClientServiceImpl clientServiceImpl;
+	
 	
 	@GetMapping("/testCourseSession")
 	public ResponseEntity<List<CourseSession> >getCourseSession(){
@@ -59,6 +67,25 @@ public class TestController {
 		courseServiceImpl.deleteCourse(code);
         return new ResponseEntity<Course>(HttpStatus.OK);
     }
+	/*@RequestMapping(value = "/testclient", method = RequestMethod.POST)
+    public ResponseEntity<Client> postClient() {
+		
+		Course course=new Course("TO52","Projet de recherche",);
+		 Date startDate=new Date();
+	    Date endDate=new Date();
+	    
+	    Location location=new Location("GRENOBLE");
+	    CourseSession courseSession=new CourseSession(startDate,endDate, 1000,course,location);	
+	 
+        Client client=new Client("Nomtest","PrenomTest","adresseTest","phonetest","fdn@yahoo.fr",courseSession);
+       
+    	
+    	
+    	
+		clientServiceImpl.addClient(client);
+        return new ResponseEntity<Client>(HttpStatus.OK);
+    }*/
+	
 	
 	
 }
