@@ -85,6 +85,34 @@
 	<br>
 		Nombre de personnes inscrites:
 			${courseSession.clients.size()} / ${courseSession.max}
+			
+	<table class="table table-bordered table-striped ">
+						<thead>
+							<tr>
+								
+								<th>Noms</th>
+								<th>Prénoms</th>
+								<th>Adresse</th>
+								<th>Téléphone</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="client" items="${courseSession.clients}"
+								varStatus="boucle">
+
+								<tr>
+									
+									<td><c:out value="${client.lastname}" /></td>
+									<td><c:out value="${client.firstname}" /></td>
+									<td><c:out value="${client.address}" /></td>
+									<td><c:out value="${client.phone}" /></td>
+									<td><c:out value="${client.email}" /></td>
+								</tr>
+
+							</c:forEach>
+						</tbody>
+					</table>
 	
 	<div class="progress session">
 	
@@ -132,10 +160,11 @@
 									aria-label="Close">
 									<i aria-hidden="true" class="fas fa-times"></i>
 								</button>
-								<span> <i class="far fa-frown mr-2"></i> <c:if
-										test="${full == true}">
-                        La session est remplie.
-                    </c:if> <c:if test="${full != true}">
+								<span> <i class="far fa-frown mr-2"></i> 
+					<c:if test="${full == true}">
+                        La session est pleine.
+                    </c:if> 
+                    <c:if test="${full != true}">
                         Un erreur s'est produite lors de votre pré-inscription.
                     </c:if>
 								</span>
@@ -150,7 +179,7 @@
 						<div class="form-row">
 							<div class="form-group col-6">
 								<form:label path="lastname">Nom</form:label>
-								<form:input path="lastname" placeholder="DOE"
+								<form:input path="lastname" placeholder="NOM"
 									required="required" cssClass="form-control" />
 								<form:errors path="lastname" element="small"
 									cssClass="form-error" />
@@ -158,7 +187,7 @@
 							</div>
 							<div class="form-group col-6">
 								<form:label path="firstname">Prénom</form:label>
-								<form:input path="firstname" placeholder="John"
+								<form:input path="firstname" placeholder="PRENOM"
 									required="required" cssClass="form-control" />
 								<form:errors path="firstname" element="small"
 									cssClass="form-error" />
@@ -168,7 +197,7 @@
 						<div class="form-group">
 							<form:label path="address">Adresse</form:label>
 							<form:input path="address"
-								placeholder="6 Boulevard Anatole France" required="required"
+								placeholder="28 RUE ADOLPE THIERS" required="required"
 								cssClass="form-control" />
 							<form:errors path="address" element="small" cssClass="form-error" />
 							<div class="invalid-feedback">Champ obligatoire !</div>
@@ -184,7 +213,7 @@
 							<div class="form-group col-6">
 								<form:label path="email">Email</form:label>
 								<form:input path="email" type="email"
-									placeholder="john.doe@example.com" cssClass="form-control" />
+									placeholder="nom.prenom@example.com" cssClass="form-control" />
 								<form:errors path="email" element="small" cssClass="form-error" />
 							</div>
 						</div>

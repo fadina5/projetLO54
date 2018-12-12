@@ -42,7 +42,6 @@ public class Client implements java.io.Serializable {
 	
 	@Email
 	@Column(name = "CLI_EMAIL")
-	@NotNull
 	private String email;
 
 	@ManyToOne

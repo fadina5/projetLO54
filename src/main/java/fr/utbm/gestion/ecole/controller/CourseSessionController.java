@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import fr.utbm.gestion.ecole.entity.Client;
+import fr.utbm.gestion.ecole.service.impl.ClientServiceImpl;
 import fr.utbm.gestion.ecole.service.impl.CourseSessionImpl;
 
 @RestController
@@ -29,27 +30,30 @@ public class CourseSessionController {
 	
 	@Autowired
 	private CourseSessionImpl courseSessionImpl;
+	
+	@Autowired
+	private ClientServiceImpl clientServiceImpl;
 
 		@GetMapping("/{id}")
 	    public ModelAndView showRegisterForm(HttpServletRequest request, @PathVariable("id") Integer id, @RequestParam(required = false) String success,@RequestParam(required = false) String full)
 		{
 
-	        ModelAndView modelAndView = new ModelAndView("course-session");
+	        ModelAndView modelAndView = new ModelAndView("inscription");
 	        Client client = new Client();
-	       //if (success != null) {
+	      if (success != null) {
 	          modelAndView.addObject("success", success);
 
-	            // Check if courseSession is full
-	          //  if (full != null) {
+	           //Check if courseSession is full
+	       if (full != null) {
 	                modelAndView.addObject("full", full);
-	           // }
+	           }
 
 	            Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 	            if (!CollectionUtils.isEmpty(flashMap)) {
 	                client = (Client) flashMap.get("client");
 	            }
-	        //}
-
+	        }
+	      modelAndView.addObject("clients", this.clientServiceImpl.getAllClients());
 	        modelAndView.addObject("courseSession", this.courseSessionImpl.getCourseSession(id));
 
 	      
@@ -67,7 +71,7 @@ public class CourseSessionController {
 
 	        // Redirect back into form page if there are validation errors
 	        if (bindingResult.hasErrors()) {
-	            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customer", bindingResult);
+	            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.client", bindingResult);
 	            redirectAttributes.addFlashAttribute("client", client);
 	            return new ModelAndView(nextUrl);
 	        }
@@ -80,7 +84,7 @@ public class CourseSessionController {
 	            System.err.println(e.toString());
 	            nextUrl += "false";
 	            // Check if exception is due to max of courseSession
-	            if (e.getMessage().equals("courseSession.full")) {
+	            if (e.getMessage().equals("La session de cours est pleine")) {
 	                nextUrl += "&full=true";
 	            }
 	        }
