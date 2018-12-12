@@ -16,7 +16,7 @@ public class LocationServiceImpl implements LocationService {
     public LocationRepository locationRepository;
 
     public void addLocation(Location location) {
-    	locationRepository.addLocation(location);
+    	locationRepository.saveLocation(location);
     	System.out.println("La nouvelle location est: " + location.toString());
     }
 

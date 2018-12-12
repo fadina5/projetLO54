@@ -20,9 +20,8 @@
   <div class="container"><h3 class="display-4"> Gestion des formations</h3>
  </div>
 </div>
-
-	<div class="container home">
-		<div class="tool-recherche py-1">
+<div class="container">
+		<div class="recherche py-1">
 			<!-- Recherche par titre -->
 			
 			<form id="form-search" class="search-form" method="post"
@@ -113,7 +112,7 @@
 			<div class="container">
 			<nav class="navbar navbar-light justify-content-center mb-2">
 					<span class="navbar-brand mb-0"><h4>Nombre de formations disponibles:
-						${coursePagedListHolder.nrOfElements}</h4></span>
+						${courses.size()}</h4></span>
 				</nav>
 				</div>
 				<div class="list-group px-5">
@@ -122,18 +121,19 @@
 							<tr>
 								<th>Code</th>
 								<th>Intitulé</th>
+								<th>Description</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="course" items="${coursePagedListHolder.pageList}"
+							<c:forEach var="course" items="${courses}"
 								varStatus="boucle">
 
 								<tr>
-									<td><a href="<c:url value="/course/${course.code}"/>"><c:out
-												value="${course.code}" /></a></td>
+									<td><c:out value="${course.code}" /></td>
 
 									<td><a href="<c:url value="/course/${course.code}"/>"><c:out
 												value="${course.titre}" /></a></td>
+									<td><c:out value="${course.description}" /></td>
 
 
 								</tr>
@@ -145,39 +145,24 @@
 
 
 				</div>
-				<nav class="py-2">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled"><span class="page-link">Page</span>
-						</li>
-						<c:forEach begin="1" end="${coursePagedListHolder.pageCount}"
-							step="1" varStatus="i">
-							<li class="page-item${page == i.index ? ' active':''}"><c:if
-									test="${advanced == false }">
-									<a class="page-link" href="#" onclick="submitForm(${i.index})">${i.index}</a>
-								</c:if> <c:if test="${advanced != false }">
-									<a class="page-link" href="<c:url value="/?p=${i.index}"/>">${i.index}</a>
-								</c:if></li>
-						</c:forEach>
-					</ul>
-				</nav>
-				
-				
 			</c:if>
 		</div>
 		 <c:if test="${advanced == true}">
             <div class="row justify-content-center mb-2">
-                <span class="search-result px-4 py-2 rounded">${courseSessionPagedListHolder.nrOfElements} sessions(s) trouvée(s)</span>
+                <span class="search-result px-4 py-2 rounded">Nombre de sessions disponibles:${courseSession.size()}</span>
             </div>
 
             <div class="border rounded sessions-box">
                 <div class="row">
-                    <c:forEach items="${courseSessionPagedListHolder.pageList}" var="courseSession">
+                    <c:forEach items="${courseSession}" var="courseSession">
                         <div class="col-6 card-session">
                         <div class="card">
                             <h4 class="card-header"><strong>${courseSession.course.code}:${courseSession.course.titre}</strong></h4>
                                 <div class="card-body">
+                                
+                                <h4 class="justify-center">Objectif: ${courseSession.course.description}</h4>
                                    
-					<h5 class="card-text">Session ${status.index + 1}</h5>
+							<h5 class="card-text">Session ${status.index +1}</h5>
                           			<p class="card-text">
                                 Début :
                                 <span class="highlight">
@@ -225,18 +210,7 @@
                         </div>
                     </c:forEach>
                 </div>
-                <nav class="py-2">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <span class="page-link">Page</span>
-                        </li>
-                        <c:forEach begin="1" end="${courseSessionPagedListHolder.pageCount}" step="1" varStatus="i">
-                            <li class="page-item${page == i.index ? ' active':''}">
-                                <a class="page-link" href="#" onclick="submitFormAdvanced(${i.index})">${i.index}</a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </nav>
+               
             </div>
         </c:if>
 		

@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
 
 	
 	public void addClient(Client client) {
-        client = clientRepository.addClient(client);
+        client = clientRepository.saveClient(client);
         System.out.println("Le nouveau client est: " + client.toString());
     }
 

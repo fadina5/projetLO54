@@ -19,5 +19,5 @@ public interface CourseSessionService {
 	
 	public void registerClient(Integer idcourseSession, Client client) throws Exception;
 	
-	public List<CourseSession> filteredCourseSessions(String titre, String date, Integer idlocation);
+	public List<CourseSession> filteredCourseSessions(String titre, String date, String location);
 }

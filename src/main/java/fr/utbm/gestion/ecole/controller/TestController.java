@@ -67,10 +67,10 @@ public class TestController {
 		courseServiceImpl.deleteCourse(code);
         return new ResponseEntity<Course>(HttpStatus.OK);
     }
-	/*@RequestMapping(value = "/testclient", method = RequestMethod.POST)
+	@RequestMapping(value = "/testclient", method = RequestMethod.POST)
     public ResponseEntity<Client> postClient() {
 		
-		Course course=new Course("TO52","Projet de recherche",);
+		Course course=new Course("TO52","Projet de recherche","nffgfrjfdjnkfkjjh");
 		 Date startDate=new Date();
 	    Date endDate=new Date();
 	    
@@ -84,8 +84,7 @@ public class TestController {
     	
 		clientServiceImpl.addClient(client);
         return new ResponseEntity<Client>(HttpStatus.OK);
-    }*/
-	
+    }
 	
 	
 }

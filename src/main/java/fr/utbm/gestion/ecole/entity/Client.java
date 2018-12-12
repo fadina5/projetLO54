@@ -123,7 +123,7 @@ public class Client implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", address=" + address
-				+ ", phone=" + phone + ", email=" + email + ", courseSession=" + courseSession + "]";
+				+ ", phone=" + phone + ", email=" + email + "]";
 	}
 
 }

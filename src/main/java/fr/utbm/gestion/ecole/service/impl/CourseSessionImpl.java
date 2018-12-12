@@ -22,7 +22,7 @@ public class CourseSessionImpl implements CourseSessionService {
 	private ClientRepository clientRepository;
 
 	public void addCourseSession(CourseSession courseSession) {
-		courseSession = courseSessionRepository.addCourseSession(courseSession);
+		courseSession = courseSessionRepository.saveCourseSession(courseSession);
 		System.out.println("la session de cours créé est: " + courseSession.toString());
 	}
 
@@ -49,20 +49,21 @@ public class CourseSessionImpl implements CourseSessionService {
 	}
 
 	public void registerClient(Integer idcourseSession, Client client) throws Exception {
-		//Integer id = Util.convertStringToInteger(idcourseSession);
 		CourseSession courseSession = courseSessionRepository.findCourseSession(idcourseSession);
 		if (courseSession.getClients().size() == courseSession.getMax()) {
 			throw new Exception("La session de cours est pleine");
 		}
 		client.setCourseSession(courseSession);
-		clientRepository.addClient(client);
+		clientRepository.saveClient(client);
 		courseSession.getClients().add(client);
 		courseSessionRepository.updateCourseSession(courseSession);
 		System.out.println("Le client enregistré est: " + client.toString());
 	}
-	public List<CourseSession> filteredCourseSessions(String titre, String date, Integer idlocation) {
-		Date newDate=Util.convertStringToDate(date);
-		return this.courseSessionRepository.getFilterCourseSessions(titre, newDate, idlocation);
+	public List<CourseSession> filteredCourseSessions(String titre, String date, String location) {
+		Date newDate = Util.convertStringToDate(date);
+		Integer idlocation = Util.convertStringToInteger(location);
+		
+		return this.courseSessionRepository.findCourseSessions(titre, newDate, idlocation);
     }
 
 }

@@ -16,7 +16,7 @@ public class CourseServiceImpl implements CourseService  {
 	private CourseRepository courseRepository;
 	
 	public void addCourse(Course course) {
-        course =courseRepository.addCourse(course); 
+        course =courseRepository.saveCourse(course); 
         System.out.println("le nouveau cours inséré est: " + course.toString());
     }
 

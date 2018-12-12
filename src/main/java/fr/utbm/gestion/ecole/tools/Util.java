@@ -7,13 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Util {
-	
-	public static final int COURSE_PER_PAGE =3;
-    public static final int COURSESESSION_PER_PAGE =3;
    
-   
-  
-    public static Date convertStringToDate(String stringDate) {
+	public static Date convertStringToDate(String stringDate) {
         try {
         	DateFormat formatter;
             formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -25,10 +20,11 @@ public class Util {
 		return null;
     }
 
-    public static Integer convertStringToInteger(String string) {
-        return (string != null && !Objects.equals(string, "")) ? Integer.parseInt(string) : null;
-    }
+	 public static Integer convertStringToInteger(String str_int) {
+	        return (str_int != null && !Objects.equals(str_int, "")) ? Integer.parseInt(str_int) : null;
+	    }
 
+  
     public static Integer getIntegerToPercent(int part, int total) {
         int result = 0;
         if (total != 0) {

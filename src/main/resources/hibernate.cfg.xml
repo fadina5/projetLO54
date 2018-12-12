@@ -12,6 +12,8 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		 <property name="show_sql">true</property>
 		 
+		  
+		 
         <mapping class="fr.utbm.gestion.ecole.entity.Course" />
         <mapping class="fr.utbm.gestion.ecole.entity.CourseSession" />
         <mapping class="fr.utbm.gestion.ecole.entity.Location" />

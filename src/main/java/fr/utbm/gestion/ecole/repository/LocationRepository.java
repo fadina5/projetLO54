@@ -14,7 +14,7 @@ import fr.utbm.gestion.ecole.tools.HibernateUtil;
 @Repository
 public class LocationRepository {
 
-	public Location addLocation(Location location) {
+	public Location saveLocation(Location location) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		try {

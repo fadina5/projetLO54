@@ -27,7 +27,7 @@ public class CourseSession implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CS_ID")
 	private Integer id;
 

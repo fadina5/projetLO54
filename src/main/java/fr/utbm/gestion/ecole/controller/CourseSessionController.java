@@ -74,7 +74,8 @@ public class CourseSessionController {
 
 	        // Try proceeding registration
 	        try {
-	            this.courseSessionImpl.registerClient(id, client);
+				this.courseSessionImpl.registerClient(id, client);
+				nextUrl += "true";
 	        } catch (Exception e) {
 	            System.err.println(e.toString());
 	            nextUrl += "false";

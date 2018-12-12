@@ -8,7 +8,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -20,7 +19,7 @@ import fr.utbm.gestion.ecole.tools.Util;
 @Repository
 public class CourseSessionRepository {
 
-	public CourseSession addCourseSession(CourseSession courseSession) {
+	public CourseSession saveCourseSession(CourseSession courseSession) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -58,6 +57,7 @@ public class CourseSessionRepository {
 		try {
 			courseSession = session.get(CourseSession.class, id);
 			Hibernate.initialize(courseSession.getClients());
+			courseSession.setClientPercentage(Util.getIntegerToPercent(courseSession.getClients().size(), courseSession.getMax()));
 
 		} catch (HibernateException he) {
 			he.printStackTrace();
@@ -177,7 +177,7 @@ public class CourseSessionRepository {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public List<CourseSession> getFilterCourseSessions(String titre, Date date, Integer location) {
+	public List<CourseSession> findCourseSessions(String titre, Date date, Integer idlocation) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<CourseSession> courseSessions = new ArrayList<>();
 
@@ -186,10 +186,10 @@ public class CourseSessionRepository {
 			Criteria criteria = session.createCriteria(CourseSession.class);
 
 			if (date != null) {
-				criteria.add(Restrictions.between("startDate", date,date));
+				criteria.add(Restrictions.between("startDate", date, date));
 			}
-			if (location != null) {
-				criteria.add(Restrictions.eq("location.id", location));
+			if (idlocation != null) {
+				criteria.add(Restrictions.eq("location.id", idlocation));
 			}
 			if (titre != null) {
 				criteria.createCriteria("course").add(Restrictions.ilike("titre", "%" + titre + "%"));

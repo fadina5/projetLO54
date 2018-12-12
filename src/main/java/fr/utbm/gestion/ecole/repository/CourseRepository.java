@@ -16,7 +16,7 @@ import fr.utbm.gestion.ecole.tools.Util;
 @Repository
 public class CourseRepository {
 
-	public Course addCourse(Course course) {
+	public Course saveCourse(Course course) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();

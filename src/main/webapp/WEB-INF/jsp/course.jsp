@@ -16,84 +16,94 @@
 </head>
 <body>
 	<nav
-		class="navbar sticky-top navbar-light bg-dark justify-content-center">
-		<a class="navbar-brand"> Gestion des formations </a>
+		class="navbar sticky-top navbar-light bg-light justify-content-center">
+		<h3 class="navbar-brand"> Gestion des formations </h3>
 	</nav>
 
-	<nav class="navbar navbar-light bg-light">
+	<nav class="navbar">
 		<h5 class="my-0 mr-md-auto font-weight-normal">
-			<a class="navbar-brand" href="<c:url value="/"/>"> 
-			<i class="fas fa-caret-left mr-2"></i> <span><strong>Retour</strong></span>
-			
+			<a class="navbar-brand" href="<c:url value="/"/>">
+			<button type="button" class="btn btn-outline-primary btn-lg">
+			 <i class="fas fa-caret-left mr-2"></i> <span><strong>Retour</strong></span>
+			</button>
 			</a>
 		</h5>
 	</nav>
-
-	<div class="container col-8">
-		<div class="card">
-			<h4 class="card-header"><strong>${course.code}:${course.titre}</strong></h4>
+	
+<div class="jumbotron">
+<div class="container"><h4 class="display-4">${course.code}: ${course.titre}</h4>
+ <h3 class="lead justify-content-center mb-2"><strong>Objectif</strong>: ${course.description}</h3>
+ <hr class="my-4">
+ <nav class="navbar navbar-light justify-content-center mb-0">
+ <span class="navbar-brand mb-0"><h4>
+Nombre de sessions disponibles: ${course.courseSessions.size()}</h4></span>
+</nav>
+</div>
+ 
+</div>
+ <div class="container col-6">
+  <div class="row">
+		
+				<c:forEach items="${course.courseSessions}" var="courseSession"
+					varStatus="status">
+					 <div class="col-6">
+				<div class="card">
+				
+			<h4 class="card-header">
+				<strong>Session ${status.index + 1}</strong>
+			</h4>
 			<div class="card-body">
-			<div class="card-footer justify-content-center text-muted">
-				Nombre de sessions disponibles: ${course.courseSessions.size()}
-			</div>
-			<p class="card-text"></p>
-            <c:forEach items="${course.courseSessions}" var="courseSession" varStatus="status">
-               
 			
-                    
-                            <h5 class="card-text">Session ${status.index + 1}</h5>
-                            <p class="card-text">
-                                Début :
-                                <span class="highlight">
-                                    <fmt:formatDate value="${courseSession.startDate}" pattern="dd/MM/yy"/>
-                                </span>
-                                
-                                &nbsp; - &nbsp;
-                                Fin :
-                                <span class="highlight">
-                                    <fmt:formatDate value="${courseSession.endDate}" pattern="dd/MM/yy"/>
-                                </span>
-                                </p>
-                                 <p class="card-text">
-                             
-                                Ville :
-                                <span class="highlight">
-                                        ${courseSession.location.city}
-                                </span>
-                            </p>
+					<p class="card-text">
+						Début : <span class="highlight"> <fmt:formatDate
+								value="${courseSession.startDate}" pattern="dd/MM/yy" />
+						</span> &nbsp; - &nbsp; Fin : <span class="highlight"> <fmt:formatDate
+								value="${courseSession.endDate}" pattern="dd/MM/yy" />
+						</span>
+					</p>
+					<p class="card-text">
 
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="progress session">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated
-                                        ${courseSession.clientPercentage == 100 ? "bg-danger" : "bg-success"}"
+						Ville : <span class="highlight">
+							${courseSession.location.city} </span>
+					</p>
+
+					<div class="row align-items-center">
+						<div class="col">
+							<div class="progress session">
+								<div
+									class="progress-bar progress-bar-striped progress-bar-animated
+                                        ${courseSession.clientPercentage == 100 ? "
+									bg-danger" : "bg-success"}"
                                              role="progressbar"
-                                             aria-valuenow="${courseSession.clientPercentage}"
-                                             aria-valuemin="0" aria-valuemax="100"
-                                             style="width: ${courseSession.clientPercentage}%">
-                                            <span class="progress-value">${courseSession.clientPercentage}%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <a href="<c:url value="/course-session/${courseSession.id}"/>"
-                                       class="btn btn-primary btn-block">
-                                        Préinscription
-                                        <i class="fas fa-angle-right ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                       
-                
-                
-            </c:forEach>
-     
+									aria-valuenow="${courseSession.clientPercentage}"
+									aria-valuemin="0" aria-valuemax="100"
+									style="width: ${courseSession.clientPercentage}%">
+									<span class="progress-value">${courseSession.clientPercentage}%</span>
+								</div>
+							</div>
+						</div>
+				
+						<a href="<c:url value="/course-session/${courseSession.id}"/>"> 
+						<button type="button" class="btn btn-success btn-block">
+						Préinscription 
+						<i class="fas fa-angle-right ml-2"></i>
+						</button>
+						</a>
+
+					</div>
+					</div>
+					</div>
 	
-				<p class="card-title"></p>
-			
-			
-			   </div>
-    </div>
-		</div>
+	</div>
+					
+				</c:forEach>
+
+			</div>
+		
+	</div>
 	
+	
+
 	<%@ include file="scripts.jsp"%>
+</body>
+</html>

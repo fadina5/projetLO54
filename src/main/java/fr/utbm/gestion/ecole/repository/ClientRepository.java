@@ -14,7 +14,7 @@ import fr.utbm.gestion.ecole.tools.HibernateUtil;
 @Repository
 public class ClientRepository {
 
-	public Client addClient(Client client) {
+	public Client saveClient(Client client) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
