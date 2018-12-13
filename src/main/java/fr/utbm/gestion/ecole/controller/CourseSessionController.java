@@ -36,9 +36,7 @@ public class CourseSessionController {
 
 		@GetMapping("/{id}")
 	    public ModelAndView showRegisterForm(HttpServletRequest request, @PathVariable("id") Integer id, @RequestParam(required = false) String success,@RequestParam(required = false) String full)
-		{
-
-	        ModelAndView modelAndView = new ModelAndView("inscription");
+		{ ModelAndView modelAndView = new ModelAndView("inscription");
 	        Client client = new Client();
 	      if (success != null) {
 	          modelAndView.addObject("success", success);

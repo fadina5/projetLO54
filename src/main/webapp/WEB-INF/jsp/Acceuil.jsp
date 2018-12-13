@@ -145,9 +145,6 @@
 								</c:forEach>
 							</tbody>
 						</table>
-
-
-
 					</div>
 				</c:if>
 			</div>
@@ -162,15 +159,13 @@
 						<c:forEach items="${courseSession}" var="courseSession">
 							<div class="col-6 card-session">
 								<div class="card">
-									<h4 class="card-header">
+									<h5 class="card-header">
 										<strong>${courseSession.course.code}:${courseSession.course.titre}</strong>
-									</h4>
+									</h5>
 									<div class="card-body">
 
-										<h4 class="justify-center">Objectif:
-											${courseSession.course.description}</h4>
-
-										<h5 class="card-text">Session ${status.index +1}</h5>
+										<h5 class="justify-center">Objectif:
+											${courseSession.course.description}</h5>
 										<p class="card-text">
 											Début : <span class="highlight"> <fmt:formatDate
 													value="${courseSession.startDate}" pattern="dd/MM/yy" />

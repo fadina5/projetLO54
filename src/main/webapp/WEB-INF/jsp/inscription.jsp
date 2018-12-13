@@ -16,7 +16,7 @@
 <body>
 
 	<nav
-		class="navbar sticky-top navbar-light bg-light justify-content-center">
+		class="navbar sticky-top navbar-dark bg-light justify-content-center">
 		<a class="navbar-brand"> Gestion des formations </a>
 	</nav>
 
@@ -69,7 +69,7 @@
 	<nav class="navbar navbar-light justify-content-center mb-0">
 		<span class="navbar-brand mb-0">
 			<h3>Formulaire de préinscription de
-				:${courseSession.course.code}</h3>
+				: ${courseSession.course.code}</h3>
 		</span>
 	</nav>
 	<div class="container justify-content-center mb-2">
@@ -83,9 +83,16 @@
 			${courseSession.location.city} </span>
 	<br>
 	<br>
-		Nombre de personnes inscrites:
+	<nav class="navbar navbar-light justify-content-center mb-0">
+		<span class="navbar-brand mb-0">
+		<h5>
+			Nombre de personnes inscrites:
 			${courseSession.clients.size()} / ${courseSession.max}
-			
+		</h5></span>
+	</nav>
+		
+		<br>
+		<br>	
 	<table class="table table-bordered table-striped ">
 						<thead>
 							<tr>
@@ -171,7 +178,12 @@
 							</div>
 						</c:if>
 					</div>
-
+					<div class="container">
+					
+					<h3><strong>Inscription</strong></h3>
+					 <hr class="my-4">
+					 <br>
+					
 					<form:form class="needs-validation" novalidate="novalidate"
 						modelAttribute="client" method="post"
 						action="/course-session/${courseSession.id}/register">
@@ -227,6 +239,7 @@
 							</div>
 						</div>
 					</form:form>
+					</div>
 </div>
 				</div>
 			</div>

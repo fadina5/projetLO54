@@ -32,12 +32,12 @@ $(function () {
     });
 
     submitForm = function (page) {
-        $('#page-number').val(page);
+       
         $('#form-search').submit();
     };
 
     submitFormAdvanced = function (page) {
-        $('#page-number-advanced').val(page);
+       
         $('#form-advanced-search').submit();
     };
 });

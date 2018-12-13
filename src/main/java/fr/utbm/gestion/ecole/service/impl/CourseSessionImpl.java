@@ -1,5 +1,6 @@
 package fr.utbm.gestion.ecole.service.impl;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class CourseSessionImpl implements CourseSessionService {
 		courseSessionRepository.updateCourseSession(courseSession);
 		System.out.println("Le client enregistré est: " + client.toString());
 	}
-	public List<CourseSession> filteredCourseSessions(String titre, String date, String location) {
+	public List<CourseSession> filteredCourseSessions(String titre, String date, String location) throws ParseException {
 		Date newDate = Util.convertStringToDate(date);
 		Integer idlocation = Util.convertStringToInteger(location);
 		
