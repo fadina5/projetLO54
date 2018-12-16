@@ -1,15 +1,15 @@
 package fr.utbm.gestion.ecole.config;
 
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-@SuppressWarnings("deprecation")
-public class MvcConfiguration extends WebMvcConfigurerAdapter
+
+public class MvcConfiguration implements WebMvcConfigurer
 {
-    @Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
+    public void configureViewResolvers(ViewResolverRegistry registry) {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/jsp/");
 		resolver.setSuffix(".jsp");
@@ -17,5 +17,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter
 		registry.viewResolver(resolver);
 	}
     
-
+    public void configureDefaultServletHandling(
+      DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+ 
+    
 }

@@ -31,17 +31,17 @@
 	</nav>
 	
 <div class="jumbotron">
-<div class="container"><h4 class="display-4">${course.code}: ${course.titre}</h4>
- <h3 class="lead justify-content-center mb-2"><strong>Objectif</strong>: ${course.description}</h3>
+<div class="container"><h2 class="display-5">${course.code}: ${course.titre}</h2>
+ <h3 class="lead justify-content-center mb-2"> <strong>Objectif:</strong> ${course.description}</h3>
  <hr class="my-4">
  <nav class="navbar navbar-light justify-content-center mb-0">
- <span class="navbar-brand mb-0"><h4>
-Nombre de sessions disponibles: ${course.courseSessions.size()}</h4></span>
+ <span class="navbar-brand mb-0">
+Nombre de sessions disponibles: ${course.courseSessions.size()}</span>
 </nav>
 </div>
  
 </div>
- <div class="container col-6">
+ <div class="container col-8">
   <div class="row">
 		
 				<c:forEach items="${course.courseSessions}" var="courseSession"

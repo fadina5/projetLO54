@@ -164,8 +164,8 @@
 									</h5>
 									<div class="card-body">
 
-										<h5 class="justify-center">Objectif:
-											${courseSession.course.description}</h5>
+										<p class=" card-text justify-center">Objectif:
+											${courseSession.course.description}</p>
 										<p class="card-text">
 											Début : <span class="highlight"> <fmt:formatDate
 													value="${courseSession.startDate}" pattern="dd/MM/yy" />

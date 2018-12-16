@@ -1,5 +1,4 @@
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/repository/CourseSessionRepository.java
-/Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/controller/TestController.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/service/impl/CourseServiceImpl.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/tools/Util.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/service/LocationService.java
@@ -8,7 +7,6 @@
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/service/ClientService.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/controller/ApplicationConfig.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/controller/ExceptionHandlerController.java
-/Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/config/SecurityConfig.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/controller/CourseSessionController.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/repository/CourseRepository.java
 /Users/fadina/Documents/workspace/projetLO54/src/main/java/fr/utbm/gestion/ecole/repository/ClientRepository.java
