@@ -51,6 +51,7 @@
 							id="btn-advanced-search">Avancé...</button>
 					</div>
 				</div>
+
 			</form>
 			<!-- Avancé -->
 			<form id="form-advanced-search" class="search-form" method="post"
@@ -106,12 +107,12 @@
 					</div>
 				</div>
 			</form>
-			
+
 
 			<div class="page-body rounded py-2 mt-2">
-			
+
 				<c:if test="${advanced != true }">
-				
+
 					<div class="container">
 						<nav class="navbar navbar-light justify-content-center mb-2">
 							<span class="navbar-brand mb-0"><h4>Nombre de
@@ -149,7 +150,19 @@
 				</c:if>
 			</div>
 			<c:if test="${advanced == true}">
+				<nav class="navbar">
+					<a class="navbar-brand"></a>
+					<form class="form-inline">
+						<a href="<c:url value="/"/>">
+							<button type="button" class="btn btn-secondary btn-block"
+								id="btn-advanced-search">retour</button>
+						</a>
+
+					</form>
+				</nav>
+
 				<div class="row justify-content-center mb-2">
+
 					<span class="search-result px-4 py-2 rounded">Nombre de
 						sessions disponibles:${courseSession.size()}</span>
 				</div>

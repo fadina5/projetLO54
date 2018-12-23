@@ -15,9 +15,10 @@ public class CourseServiceImpl implements CourseService  {
 	@Autowired
 	private CourseRepository courseRepository;
 	
-	public void addCourse(Course course) {
+	public Course addCourse(Course course) {
         course =courseRepository.saveCourse(course); 
         System.out.println("le nouveau cours inséré est: " + course.toString());
+        return course;
     }
 
    public Course getCourse(String code) {

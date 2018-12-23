@@ -6,7 +6,7 @@ import fr.utbm.gestion.ecole.entity.Course;
 
 public interface CourseService {
 	
-	public void addCourse(Course course);
+	public Course addCourse(Course course);
 
 	public Course getCourse(String code);
 
